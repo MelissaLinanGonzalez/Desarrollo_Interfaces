@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="controlador.VistaDeMesasController">
+   <children>
+      <ImageView fitHeight="767.0" fitWidth="1043.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/fondo%20para%20aplicación%20de%20gestión%20de%20restaurante.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="432.0" layoutY="40.0" text="FoodFlow System" textFill="WHITE">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="107.0" layoutY="102.0" text="Usuario:" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="usuarioNombre" layoutX="181.0" layoutY="102.0" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <BorderPane layoutX="70.0" layoutY="143.0" prefHeight="573.0" prefWidth="904.0">
+         <left>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="botonBarra" alignment="CENTER" onMouseClicked="#mostrarBarra" prefHeight="102.0" prefWidth="109.0" style="-fx-background-color: red;" text="BARRA" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="45.0" top="45.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Region prefHeight="200.0" prefWidth="200.0" />
+                  <Label fx:id="botonSalon" alignment="CENTER" onMouseClicked="#mostrarSalon" prefHeight="102.0" prefWidth="107.0" style="-fx-background-color: blue;" text="SALÓN" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="45.0" top="45.0" />
+                     </padding>
+                  </Label>
+                  <Region prefHeight="200.0" prefWidth="200.0" />
+                  <Label fx:id="botonTerraza" alignment="CENTER" onMouseClicked="#mostrarTerraza" prefHeight="102.0" prefWidth="114.0" style="-fx-background-color: GREEN;" text="TERRAZA" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="45.0" top="45.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF4D; -fx-background-radius: 10;" BorderPane.alignment="CENTER">
+               <children>
+                  <FlowPane fx:id="pantallaBarra" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="b1" onMouseClicked="#irComanda" style="-fx-background-color: red; -fx-background-radius: 10;" text="B1" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets left="30.0" right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="b2" onMouseClicked="#irComanda" style="-fx-background-color: red; -fx-background-radius: 10;" text="B2" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="b3" onMouseClicked="#irComanda" style="-fx-background-color: red; -fx-background-radius: 10;" text="B3" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="b4" onMouseClicked="#irComanda" style="-fx-background-color: red; -fx-background-radius: 10;" text="B4" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="b5" onMouseClicked="#irComanda" style="-fx-background-color: red; -fx-background-radius: 10;" text="B5" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="b6" onMouseClicked="#irComanda" style="-fx-background-color: red; -fx-background-radius: 10;" text="B6" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="b7" onMouseClicked="#irComanda" style="-fx-background-color: red; -fx-background-radius: 10;" text="B7" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="b8" onMouseClicked="#irComanda" style="-fx-background-color: red; -fx-background-radius: 10;" text="B8" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="b9" onMouseClicked="#irComanda" style="-fx-background-color: red; -fx-background-radius: 10;" text="B9" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets left="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                     </children>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                  </FlowPane>
+                  <FlowPane fx:id="pantallaSalon" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <children>
+                        <Label fx:id="s1" onMouseClicked="#irComanda" style="-fx-background-color: blue; -fx-background-radius: 10;" text="S1" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets left="30.0" right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="s2" onMouseClicked="#irComanda" style="-fx-background-color: blue; -fx-background-radius: 10;" text="S2" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="s3" onMouseClicked="#irComanda" style="-fx-background-color: blue; -fx-background-radius: 10;" text="S3" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="s4" onMouseClicked="#irComanda" style="-fx-background-color: blue; -fx-background-radius: 10;" text="S4" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="s5" onMouseClicked="#irComanda" style="-fx-background-color: blue; -fx-background-radius: 10;" text="S5" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="s6" onMouseClicked="#irComanda" style="-fx-background-color: blue; -fx-background-radius: 10;" text="S6" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="s7" onMouseClicked="#irComanda" style="-fx-background-color: blue; -fx-background-radius: 10;" text="S7" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="s8" onMouseClicked="#irComanda" style="-fx-background-color: blue; -fx-background-radius: 10;" text="S8" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="s9" onMouseClicked="#irComanda" style="-fx-background-color: blue; -fx-background-radius: 10;" text="S9" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets left="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                     </children>
+                  </FlowPane>
+                  <FlowPane fx:id="pantallaTerraza" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <children>
+                        <Label fx:id="t1" onMouseClicked="#irComanda" style="-fx-background-color: green; -fx-background-radius: 10;" text="T1" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets left="30.0" right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="t2" onMouseClicked="#irComanda" style="-fx-background-color: green; -fx-background-radius: 10;" text="T2" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="t3" onMouseClicked="#irComanda" style="-fx-background-color: green; -fx-background-radius: 10;" text="T3" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="t4" onMouseClicked="#irComanda" style="-fx-background-color: green; -fx-background-radius: 10;" text="T4" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="t5" onMouseClicked="#irComanda" style="-fx-background-color: green; -fx-background-radius: 10;" text="T5" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="t6" onMouseClicked="#irComanda" style="-fx-background-color: green; -fx-background-radius: 10;" text="T6" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="t7" onMouseClicked="#irComanda" style="-fx-background-color: green; -fx-background-radius: 10;" text="T7" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="t8" onMouseClicked="#irComanda" style="-fx-background-color: green; -fx-background-radius: 10;" text="T8" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets right="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <Label fx:id="t9" onMouseClicked="#irComanda" style="-fx-background-color: green; -fx-background-radius: 10;" text="T9" textFill="#fcfcfc">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets left="30.0" top="20.0" />
+                           </FlowPane.margin>
+                        </Label>
+                     </children>
+                  </FlowPane>
+               </children>
+               <BorderPane.margin>
+                  <Insets left="20.0" />
+               </BorderPane.margin>
+            </StackPane>
+         </center>
+      </BorderPane>
+      <ImageView fx:id="volver" fitHeight="48.0" fitWidth="48.0" layoutX="22.0" layoutY="16.0" onMouseClicked="#volverPrincipal" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(gaussian, rgba(0, 102, 255, 0.6), 25, 0.4, 0, 0);">
+         <image>
+            <Image url="@../imagenes/icons8-volver-48.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
