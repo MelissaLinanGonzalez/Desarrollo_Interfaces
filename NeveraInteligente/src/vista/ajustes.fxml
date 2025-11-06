@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="448.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.AjustesController">
+   <children>
+      <ImageView fitHeight="800.0" fitWidth="448.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/fondo%20de%20pantalla%20para%20la%20pantalla%20tactil%20de%20una%20nevera%20inteligente%20con%20tonos%20frios.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="labelFecha" layoutX="40.0" layoutY="50.0">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelHora" layoutX="40.0" layoutY="70.0">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="home" fitHeight="48.0" fitWidth="48.0" layoutX="14.0" layoutY="738.0" onMouseClicked="#irHome" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 25, 0.4, 0, 0);">
+         <image>
+            <Image url="@../imagenes/icons8-página-principal-48.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="395.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/icons8-wifi-48.png" />
+         </image>
+      </ImageView>
+      <BorderPane layoutX="10.0" layoutY="135.0" prefHeight="530.0" prefWidth="429.0">
+         <left>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="bGeneral" mnemonicParsing="false" onMouseClicked="#mostrarGeneral" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: linear-gradient(to bottom, #4a90e2, #0d47a1); -fx-font-weight: bold; -fx-text-fill: #f8f8f8; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 25, 0.4, 0, 0);" text="General" VBox.vgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="100.0" top="40.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="bTemperatura" mnemonicParsing="false" onMouseClicked="#mostrarTemperatura" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: linear-gradient(to bottom, #4a90e2, #0d47a1); -fx-font-weight: bold; -fx-text-fill: #f8f8f8; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 25, 0.4, 0, 0);" text="Temperatura" VBox.vgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="100.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="bAlarmas" mnemonicParsing="false" onMouseClicked="#mostrarAlarmas" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: linear-gradient(to bottom, #4a90e2, #0d47a1); -fx-font-weight: bold; -fx-text-fill: #f8f8f8; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 25, 0.4, 0, 0);" text="Alarmas" VBox.vgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="100.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="bSistema" mnemonicParsing="false" onMouseClicked="#mostrarSistema" prefHeight="26.0" prefWidth="103.0" style="-fx-background-color: linear-gradient(to bottom, #4a90e2, #0d47a1); -fx-font-weight: bold; -fx-text-fill: #f8f8f8; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 25, 0.4, 0, 0);" text="Sistema" VBox.vgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                  </Button>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </VBox>
+         </left>
+         <center>
+            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox fx:id="pantallaGeneral" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF80; -fx-background-radius: 20;">
+                     <children>
+                        <Label text="Ajustes Generales">
+                           <VBox.margin>
+                              <Insets left="80.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <CheckBox mnemonicParsing="false" text="Notificaciones">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Modo ahorro">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                        <ComboBox fx:id="comboIdioma" prefWidth="150.0">
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                        <Label text="Modelo: Samsung Family Hub">
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Capacidad: 634 L">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="Conectividad: Wi-Fi">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" top="10.0" />
+                           </padding>
+                        </Label>
+                        <Label text="Pantalla táctil 21.5">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label prefWidth="309.0" text="Características: Control por voz, Pantalla interactiva" wrapText="true">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="pantallaTemperaturas" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF80; -fx-background-radius: 20;" visible="false">
+                     <children>
+                        <Label text="Ajustes de Temperatura">
+                           <VBox.margin>
+                              <Insets left="50.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label text="Temperatura Frigo: 3ºC">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="Temperatura Congelador: -30ºC">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ComboBox fx:id="comoTemperatura" prefWidth="150.0" promptText="ºC">
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                        <CheckBox mnemonicParsing="false" text="Enfriamiento Rápido">
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </CheckBox>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="pantallaAlarmas" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF80; -fx-background-radius: 20;" visible="false">
+                     <children>
+                        <Label text="Ajustes de Alarmas">
+                           <VBox.margin>
+                              <Insets left="70.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <CheckBox mnemonicParsing="false" text="Puerta Abierta">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Temperatura alta">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Filtro del agua lleno">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                        <Label text="Última alarma: Puerta abierta">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="pantallaSistema" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF80; -fx-background-radius: 20;" visible="false">
+                     <children>
+                        <Label text="Ajustes de Sistema">
+                           <VBox.margin>
+                              <Insets left="70.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Button mnemonicParsing="false" style="-fx-background-color: linear-gradient(to bottom, #1a3c6e, #4a7ac7); -fx-text-fill: #cce6ff; -fx-background-radius: 12;" text="Restaurar valores por defecto">
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" style="-fx-background-color: linear-gradient(to bottom, #1a3c6e, #4a7ac7); -fx-text-fill: #cce6ff; -fx-background-radius: 12;" text="Actualizar Firmware">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" style="-fx-background-color: linear-gradient(to bottom, #1a3c6e, #4a7ac7); -fx-text-fill: #cce6ff; -fx-background-radius: 12;" text="Reinicio de sistema">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Label text="Conexión Wif: ESTABLE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ComboBox fx:id="comboWifi" prefWidth="150.0" promptText="Red WiFi">
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,3 @@
+tomate|2|Unidades
+peras|1|Kilogramos
+yogures|8|Unidades
