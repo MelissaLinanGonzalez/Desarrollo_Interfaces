@@ -78,7 +78,7 @@ public class PrincipalController implements Initializable {
         
         new Thread(() -> {
         try {
-            String apiKey = "ea62ba5408bb6d772c747a2616ac3e66";
+            String apiKey = "TUAPIDELTIEMPOAQUI";
             String ciudad = URLEncoder.encode("Palma del Río", "UTF-8");
             String apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" 
                          + ciudad + "&units=metric&lang=es&appid=" + apiKey;
