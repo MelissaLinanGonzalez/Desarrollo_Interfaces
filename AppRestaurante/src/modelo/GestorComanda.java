@@ -7,24 +7,25 @@ package modelo;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author melissa
- */
 public class GestorComanda {
-    private Map<String, Comanda> comandas = new HashMap<>();
-    
-    public Comanda getComanda(String idMesa) {
-        // Si no existe, se crea una nueva
-        if (!comandas.containsKey(idMesa)) {
-            Comanda nueva = new Comanda(idMesa);
-            comandas.put(idMesa, nueva);
-        }
-        // Devuelve la que ya existe o la recién creada
-        return comandas.get(idMesa);
+    private static GestorComanda instance;
+    private Map<String, Comanda> comandas;
+
+    private GestorComanda() {
+        comandas = new HashMap<>();
     }
 
-    // Elimina la comanda de una mesa
+    public static GestorComanda getInstance() {
+        if (instance == null) {
+            instance = new GestorComanda();
+        }
+        return instance;
+    }
+
+    public Comanda getComanda(String idMesa) {
+        return comandas.computeIfAbsent(idMesa, k -> new Comanda(idMesa));
+    }
+
     public void eliminarComanda(String idMesa) {
         comandas.remove(idMesa);
     }

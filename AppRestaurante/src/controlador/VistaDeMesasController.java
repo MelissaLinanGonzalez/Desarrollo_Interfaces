@@ -123,8 +123,26 @@ public class VistaDeMesasController implements Initializable {
     }
 
     @FXML
-    private void irComanda(MouseEvent event) {
+    private void irComanda(MouseEvent event) throws IOException {
+        // Identificar qué label se pulsó
+        Label mesaLabel = (Label) event.getSource();
+        String mesaId = mesaLabel.getId(); // Ej: "s1", "b3", "t2"
+
+        // Cargar la vista de comandas
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistaDeComandas.fxml"));
+        Parent root = loader.load();
+
+        // Obtener el controlador de la vista de comandas
+        controlador.VistaDeComandasController controlador = loader.getController();
+        controlador.setMesaId(mesaId); // Pasamos la mesa seleccionada
+
+        // Mostrar la nueva escena
+        Scene escena = new Scene(root);
+        Stage stage = (Stage) volver.getScene().getWindow();
+        stage.setScene(escena);
+        stage.setTitle("Comanda");
     }
+
     
     public void setUsuario(String usuario){
         this.usuarioActual = usuario;
