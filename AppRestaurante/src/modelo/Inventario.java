@@ -19,17 +19,24 @@ public class Inventario {
         productos.add(p);
     }
     
+    public void eliminarProducto(ProductoInventario p){
+        productos.remove(p);
+    }
+    
     public List<ProductoInventario> getProductos(){
         return productos;
     }
     
     public List<ProductoInventario> getProductosPorFamilia(String nombreFamilia){
-        return productos.stream().filter(p -> p.getFamilia().getNombre().equalsIgnoreCase(nombreFamilia))
+        return productos.stream()
+                .filter(p -> p.getFamilia().getNombre().equalsIgnoreCase(nombreFamilia))
                 .collect(Collectors.toList());
     }
     
     public ProductoInventario buscarProducto(String nombre){
         return productos.stream()
-                .filter(p -> p.getNombre().equalsIgnoreCase(nombre)).findFirst().orElse(null);
+                .filter(p -> p.getNombre().equalsIgnoreCase(nombre))
+                .findFirst()
+                .orElse(null);
     }
 }

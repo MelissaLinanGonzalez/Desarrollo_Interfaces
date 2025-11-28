@@ -2,47 +2,51 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="711.0" prefWidth="992.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="controlador.VistaDeComandasController">
+<AnchorPane prefHeight="767.0" prefWidth="1019.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="controlador.VistaDeComandasController">
+
     <children>
-        <!-- Fondo de la aplicación -->
         <ImageView fitHeight="767.0" fitWidth="1043.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../imagenes/fondo%20para%20aplicación%20de%20gestión%20de%20restaurante.jpg" />
+                <Image url="@../imagenes/fondo para aplicación de gestión de restaurante.jpg" />
             </image>
         </ImageView>
 
-        <!-- Contenedor principal -->
-        <VBox layoutX="20" layoutY="20" spacing="15" prefWidth="950">
-            <!-- Título -->
-            <Label text="FoodFlow System" textFill="WHITE">
-                <font>
-                    <Font size="21.0" />
-                </font>
-            </Label>
+        <ImageView fx:id="volver" fitHeight="48.0" fitWidth="48.0" layoutX="22.0" layoutY="16.0" onMouseClicked="#volverMesas" pickOnBounds="true" preserveRatio="true" />
 
-            <!-- HBox con botones de familias -->
-            <HBox fx:id="botonesFamilias" spacing="10">
-                <Button text="Bebidas" onAction="#filtrarFamilia"/>
-                <Button text="Entrantes" onAction="#filtrarFamilia"/>
-                <Button text="Carnes" onAction="#filtrarFamilia"/>
-                <Button text="Postres" onAction="#filtrarFamilia"/>
-            </HBox>
+        <HBox layoutX="50" layoutY="100" spacing="30">
 
-            <!-- ScrollPane para productos -->
-            <ScrollPane prefHeight="550" fitToWidth="true">
-                <content>
-                    <FlowPane fx:id="productosPane" hgap="10" vgap="10" prefWrapLength="900"/>
-                </content>
-            </ScrollPane>
-        </VBox>
+            <VBox spacing="10">
+                <Label style="-fx-font-size: 18px; -fx-text-fill: white;" text="Resumen Comanda" />
+                <FlowPane fx:id="resumenComandaPane" hgap="10" prefWrapLength="400" style="-fx-background-color: rgba(255,255,255,0.5); -fx-padding: 10; -fx-background-radius: 10;" vgap="10" />
+                <Label fx:id="totalLabel" style="-fx-font-size: 16px; -fx-text-fill: white;" text="Total: 0.0€" />
+            </VBox>
+
+            <VBox spacing="10">
+                <Label style="-fx-font-size: 18px; -fx-text-fill: white;" text="Familias" />
+                <Button onAction="#filtrarFamilia" text="Refrescos" />
+                <Button onAction="#filtrarFamilia" text="Cervezas" />
+                <Button onAction="#filtrarFamilia" text="Entrantes" />
+                <Button onAction="#filtrarFamilia" text="Carnes" />
+                <Button onAction="#filtrarFamilia" text="Pescados" />
+                <Button onAction="#filtrarFamilia" text="Empanados" />
+                <Button onAction="#filtrarFamilia" text="Postres" />
+
+                <Label style="-fx-font-size: 18px; -fx-text-fill: white;" text="Productos Disponibles" />
+                <FlowPane fx:id="productosDisponiblesPane" hgap="10" prefWrapLength="400" style="-fx-background-color: rgba(255,255,255,0.5); -fx-padding: 10; -fx-background-radius: 10;" vgap="10" />
+            </VBox>
+
+        </HBox>
+      <ImageView fx:id="volver1" fitHeight="48.0" fitWidth="48.0" layoutX="42.0" layoutY="36.0" onMouseClicked="#volverMesas" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(gaussian, rgba(0, 102, 255, 0.6), 25, 0.4, 0, 0);">
+         <image>
+            <Image url="@../imagenes/icons8-volver-48.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

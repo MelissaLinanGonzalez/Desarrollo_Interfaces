@@ -29,4 +29,9 @@ public class GestorComanda {
     public void eliminarComanda(String idMesa) {
         comandas.remove(idMesa);
     }
+    
+    public void setComanda(String idMesa, Comanda comanda) {
+    comandas.put(idMesa, comanda);
+}
+
 }

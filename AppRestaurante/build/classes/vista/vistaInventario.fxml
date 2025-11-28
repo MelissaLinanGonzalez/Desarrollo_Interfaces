@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="controlador.VistaInventarioController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VistaInventarioController">
    <children>
       <ImageView fitHeight="767.0" fitWidth="1043.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -24,5 +29,39 @@
             <Font size="19.0" />
          </font>
       </Label>
+      <StackPane layoutX="540.0" layoutY="144.0">
+         <children>
+            <ImageView fitHeight="554.0" fitWidth="861.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/pizarra%20negra%20limpia%20porosa.jpg" />
+               </image>
+            </ImageView>
+            <TableView fx:id="productosTabla" onMouseClicked="#seleccionarProducto" prefHeight="508.0" prefWidth="414.0" style="-fx-background-radius: 10; -fx-background-color: transparent;">
+              <columns>
+                <TableColumn fx:id="colFamilia" prefWidth="125.0" style="-fx-background-color: transparent;" text="Familia" />
+                <TableColumn fx:id="colNombre" prefWidth="128.0" style="-fx-background-color: transparent;" text="Nombre" />
+                  <TableColumn fx:id="colPrecio" style="-fx-background-color: transparent;" text="Precio" />
+                  <TableColumn fx:id="colUnidades" style="-fx-background-color: transparent;" text="Unidades" />
+              </columns>
+            </TableView>
+         </children>
+      </StackPane>
+      <ImageView fx:id="volver" fitHeight="48.0" fitWidth="48.0" layoutX="32.0" layoutY="26.0" onMouseClicked="#volverPrincipal" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(gaussian, rgba(0, 102, 255, 0.6), 25, 0.4, 0, 0);">
+         <image>
+            <Image url="@../imagenes/icons8-volver-48.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="nombreProductote" layoutX="93.0" layoutY="219.0" promptText="Nombre" />
+      <Label layoutX="68.0" layoutY="130.0" prefHeight="28.0" prefWidth="267.0" text="Añadir / Modificar Productos" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboFamilia" layoutX="93.0" layoutY="164.0" prefHeight="26.0" prefWidth="162.0" promptText="Familia" />
+      <TextField fx:id="precioProducto" layoutX="93.0" layoutY="275.0" promptText="Precio unitario" />
+      <TextField fx:id="unidadesProducto" layoutX="93.0" layoutY="332.0" promptText="Unidades disponibles" />
+      <Button fx:id="botonAniadir" layoutX="56.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#agregarProducto" prefHeight="26.0" prefWidth="76.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold; -fx-font-size: 14; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 6, 0, 0, 3);" text="Añadir" />
+      <Button fx:id="botonModificar" layoutX="157.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#modificarProducto" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-font-size: 14; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 6, 0, 0, 3);" text="Modificar" />
+      <Button fx:id="botonEliminar" layoutX="271.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#eliminarProducto" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #E53935; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 6, 0, 0, 3); -fx-font-size: 14;" text="Eliminar" />
    </children>
 </AnchorPane>

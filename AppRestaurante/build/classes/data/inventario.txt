@@ -1,0 +1,6 @@
+CocaCola Zero|Refrescos|2.5|15
+SanJacabo Cheddar|Empanados|9.5|10
+Solomillo|Carnes|8.75|30
+Chipirones Plancha|Pescados|7.5|35
+Tarta Queso|Postres|3.5|12
+CruzCampo|Cervezas|2.0|2

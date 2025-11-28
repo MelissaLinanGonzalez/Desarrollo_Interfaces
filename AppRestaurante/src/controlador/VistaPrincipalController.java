@@ -47,9 +47,8 @@ public class VistaPrincipalController implements Initializable {
     @FXML
     private void cambiarAMesas(MouseEvent event) {
         try {
-        // Detectar cuál imagen se clicó
         ImageView imagenClicada = (ImageView) event.getSource();
-        String nombreUsuario = imagenClicada.getId(); // Lisa, Amparo, German...
+        String nombreUsuario = imagenClicada.getId();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistaDeMesas.fxml"));
         Parent root = loader.load();

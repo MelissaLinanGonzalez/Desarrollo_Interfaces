@@ -1,0 +1,4 @@
+CocaCola Zero|2.5|2
+Tarta Queso|3.5|1
+Solomillo|8.75|1
+CruzCampo|2.0|2
