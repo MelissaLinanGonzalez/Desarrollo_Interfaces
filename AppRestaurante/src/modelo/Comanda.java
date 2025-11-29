@@ -50,7 +50,7 @@ public class Comanda {
 
     private void guardarComanda() {
         File archivo = new File("src/data/comandas/" + idMesa + ".txt");
-        archivo.getParentFile().mkdirs(); // crear carpeta si no existe
+        archivo.getParentFile().mkdirs(); 
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
             for (Producto p : productos) {
@@ -80,5 +80,9 @@ public class Comanda {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public void eliminarProducto(String nombre) {
+        productos.removeIf(p -> p.getNombre().equalsIgnoreCase(nombre));
     }
 }

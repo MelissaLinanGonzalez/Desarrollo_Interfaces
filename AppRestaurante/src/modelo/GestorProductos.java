@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * FXML Controller class
+ *
+ * @author melissa
+ */
 public class GestorProductos {
 
     private static GestorProductos instance;

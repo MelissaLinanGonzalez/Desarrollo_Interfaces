@@ -7,6 +7,11 @@ package modelo;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * FXML Controller class
+ *
+ * @author melissa
+ */
 public class GestorComanda {
     private static GestorComanda instance;
     private Map<String, Comanda> comandas;

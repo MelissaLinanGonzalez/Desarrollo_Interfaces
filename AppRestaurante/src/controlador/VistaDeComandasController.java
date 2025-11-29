@@ -26,16 +26,26 @@ import modelo.GestorComanda;
 import modelo.Producto;
 import modelo.ProductoInventario;
 
+/**
+ * FXML Controller class
+ *
+ * @author melissa
+ */
 public class VistaDeComandasController implements Initializable {
 
     @FXML private FlowPane productosDisponiblesPane;
     @FXML private FlowPane resumenComandaPane;
     @FXML private Label totalLabel;
     @FXML private ImageView volver;
+    private Label productoSeleccionadoLabel = null;
+    private Producto productoSeleccionado = null;
+
 
     private String mesaId;
     @FXML
     private ImageView volver1;
+    @FXML
+    private Button botonEliminarProductoComanda;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -121,15 +131,28 @@ public class VistaDeComandasController implements Initializable {
 
     private void refrescarResumenComanda() {
         resumenComandaPane.getChildren().clear();
-        Comanda c = GestorComanda.getInstance().getComanda(mesaId);
-        double total = 0;
+    Comanda c = GestorComanda.getInstance().getComanda(mesaId);
+    double total = 0;
 
-        for (Producto p : c.getProductos()) {
-            double subtotal = p.getPrecio() * p.getCantidad();
-            total += subtotal;
-            Label lbl = new Label(p.getNombre() + " x" + p.getCantidad() + " = " + subtotal + "€");
-            lbl.setPadding(new Insets(5));
-            lbl.setStyle("-fx-background-color: #dff0d8; -fx-border-radius: 5; -fx-background-radius: 5;");
+    for (Producto p : c.getProductos()) {
+        double subtotal = p.getPrecio() * p.getCantidad();
+        total += subtotal;
+        Label lbl = new Label(p.getNombre() + " x" + p.getCantidad() + " = " + subtotal + "€");
+        lbl.setPadding(new Insets(5));
+        lbl.setStyle("-fx-background-color: #dff0d8; -fx-border-radius: 5; -fx-background-radius: 5;");
+        
+        lbl.setOnMouseClicked(ev -> {
+            // Quitar selección previa
+            if (productoSeleccionadoLabel != null) {
+                productoSeleccionadoLabel.setStyle("-fx-background-color: #dff0d8; -fx-border-radius: 5; -fx-background-radius: 5;");
+            }
+
+            // Seleccionar actual
+            productoSeleccionadoLabel = lbl;
+            productoSeleccionado = p;
+
+            lbl.setStyle("-fx-background-color: #ffcccc; -fx-border-radius: 5; -fx-background-radius: 5;");
+            });
             resumenComandaPane.getChildren().add(lbl);
         }
 
@@ -211,6 +234,75 @@ public class VistaDeComandasController implements Initializable {
     alert.setHeaderText(titulo);
     alert.setContentText(mensaje);
     alert.showAndWait();
+    }
+
+    @FXML
+    private void eliminarProductoComanda(MouseEvent event) {
+        if(productoSeleccionado == null){
+            mostrarAlerta("Seleccion requerida","Tienes que seleccionar un producto");
+            return;
+        }
+        
+        Comanda c = GestorComanda.getInstance().getComanda(mesaId);
+        c.eliminarProducto(productoSeleccionado.getNombre());
+        aumentarStock(productoSeleccionado.getNombre(), productoSeleccionado.getCantidad());
+        
+        eliminarLineaDeArchivo(mesaId, productoSeleccionado.getNombre());
+        
+        productoSeleccionado = null;
+        productoSeleccionadoLabel = null;
+        
+        refrescarResumenComanda();
+    }
+    
+    private void eliminarLineaDeArchivo(String mesaId, String nombreProducto) {
+        File archivo = new File("src/data/" + mesaId + ".txt");
+        List<String> lineas = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (!linea.startsWith(nombreProducto + "|")) {
+                    lineas.add(linea);
+                }
+            }
+        } catch (Exception e) { e.printStackTrace(); }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
+            for (String l : lineas) {
+                bw.write(l);
+                bw.newLine();
+            }
+        } catch (Exception e) { e.printStackTrace(); }
+    }
+    
+    private void aumentarStock(String nombreProducto, int cantidadAgregar) {
+        File archivo = new File("src/data/inventario.txt");
+        List<String> lineas = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split("\\|");
+                if (datos[0].equalsIgnoreCase(nombreProducto)) {
+                    int stockActual = Integer.parseInt(datos[3]);
+                    int nuevoStock = stockActual + cantidadAgregar;
+                    linea = datos[0] + "|" + datos[1] + "|" + datos[2] + "|" + nuevoStock;
+                }
+                lineas.add(linea);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
+            for (String l : lineas) {
+                bw.write(l);
+                bw.newLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
 }

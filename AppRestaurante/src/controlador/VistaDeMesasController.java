@@ -126,7 +126,7 @@ public class VistaDeMesasController implements Initializable {
     private void irComanda(MouseEvent event) throws IOException {
         // Identificar qué label se pulsó
         Label mesaLabel = (Label) event.getSource();
-        String mesaId = mesaLabel.getId(); // Ej: "s1", "b3", "t2"
+        String mesaId = mesaLabel.getId(); 
 
         // Cargar la vista de comandas
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistaDeComandas.fxml"));
