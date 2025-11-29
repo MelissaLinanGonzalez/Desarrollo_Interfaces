@@ -12,12 +12,7 @@ public class GestorProductos {
     private GestorProductos() {
         productos = new ArrayList<>();
 
-        // Aquí agregas los productos que hay en cada familia
-        productos.add(new ProductoConFamilia("CocaCola", 2.0, "Bebidas"));
-        productos.add(new ProductoConFamilia("Agua", 1.5, "Bebidas"));
-        productos.add(new ProductoConFamilia("Solomillo", 15.0, "Carnes"));
-        productos.add(new ProductoConFamilia("Ración de bravas", 5.0, "Entrantes"));
-        // etc.
+        
     }
 
     public static GestorProductos getInstance() {

@@ -1,5 +1,1 @@
-CocaCola Zero|2.5|1
-Solomillo|8.75|1
-Tarta Queso|3.5|1
-CruzCampo|2.0|1
-Chipirones Plancha|7.5|2
+SanJacabo Cheddar|9.5|10

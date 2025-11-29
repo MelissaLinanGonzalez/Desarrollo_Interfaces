@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -20,8 +21,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import modelo.Comanda;
+import modelo.Familia;
 import modelo.GestorComanda;
 import modelo.Producto;
+import modelo.ProductoInventario;
 
 public class VistaDeComandasController implements Initializable {
 
@@ -36,8 +39,8 @@ public class VistaDeComandasController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Opcional: cargar todos los productos al iniciar
-        mostrarProductosDisponibles(""); // "" para mostrar todos al inicio
+        
+        mostrarProductosDisponibles("");
     }
 
     public void setMesaId(String mesaId) {
@@ -63,10 +66,27 @@ public class VistaDeComandasController implements Initializable {
             lbl.setPadding(new Insets(10));
             lbl.setStyle("-fx-background-color: #eee; -fx-border-radius: 5; -fx-background-radius: 5;");
             lbl.setOnMouseClicked(e -> {
-                Comanda c = GestorComanda.getInstance().getComanda(mesaId);
-                c.agregarProducto(new Producto(p.getNombre(), p.getPrecio(), 1));
-                refrescarResumenComanda();
-            });
+            String nombreProducto = p.getNombre();
+
+            int stockActual = obtenerStockProducto(nombreProducto);
+
+            if (stockActual <= 0) {
+                mostrarAlerta("Sin stock", "No queda stock de " + nombreProducto);
+                return;
+            }
+            boolean reducido = reducirStock(nombreProducto, 1);
+
+            if (!reducido) {
+                mostrarAlerta("Sin stock", "No queda stock suficiente de " + nombreProducto);
+                return;
+            }
+
+            Comanda c = GestorComanda.getInstance().getComanda(mesaId);
+            c.agregarProducto(new Producto(p.getNombre(), p.getPrecio(), 1));
+
+            refrescarResumenComanda();
+            
+        });
             productosDisponiblesPane.getChildren().add(lbl);
         }
     }
@@ -80,8 +100,8 @@ public class VistaDeComandasController implements Initializable {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                // Formato esperado: nombre|familia|precio|cantidad
                 String[] datos = linea.split("\\|");
+                
                 if (datos.length == 4) {
                     String nombre = datos[0];
                     String fam = datos[1];
@@ -91,6 +111,7 @@ public class VistaDeComandasController implements Initializable {
                     }
                 }
             }
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -128,4 +149,68 @@ public class VistaDeComandasController implements Initializable {
         stage.setScene(new Scene(root));
         stage.setTitle("FoodFlow");
     }
+    
+    private int obtenerStockProducto(String nombre) {
+        File archivo = new File("src/data/inventario.txt");
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split("\\|");
+
+                if (datos[0].equalsIgnoreCase(nombre)) {
+                    return Integer.parseInt(datos[3]); 
+                }
+            }
+        } catch (Exception e) { e.printStackTrace(); }
+
+        return -1; 
+    }
+    
+    private boolean reducirStock(String nombreProducto, int cantidadReducir) {
+
+    File archivo = new File("src/data/inventario.txt");
+    List<String> lineas = new ArrayList<>();
+
+    try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+        String linea;
+
+        while ((linea = br.readLine()) != null) {
+            String[] datos = linea.split("\\|");
+
+            if (datos[0].equalsIgnoreCase(nombreProducto)) {
+
+                int stockActual = Integer.parseInt(datos[3]);
+
+                if (stockActual < cantidadReducir) {
+                    return false;
+                }
+
+                int nuevoStock = stockActual - cantidadReducir;
+
+                linea = datos[0] + "|" + datos[1] + "|" + datos[2] + "|" + nuevoStock;
+            }
+
+            lineas.add(linea);
+        }
+
+    } catch (Exception e) { e.printStackTrace(); }
+
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
+        for (String l : lineas) {
+            bw.write(l);
+            bw.newLine();
+        }
+    } catch (Exception e) { e.printStackTrace(); }
+
+    return true;
+    }
+    
+    private void mostrarAlerta(String titulo, String mensaje) {
+    Alert alert = new Alert(Alert.AlertType.WARNING);
+    alert.setHeaderText(titulo);
+    alert.setContentText(mensaje);
+    alert.showAndWait();
+    }
+    
 }
