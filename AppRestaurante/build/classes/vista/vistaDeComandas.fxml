@@ -27,6 +27,7 @@
                 <FlowPane fx:id="resumenComandaPane" hgap="10" prefWrapLength="400" style="-fx-background-color: rgba(255,255,255,0.5); -fx-padding: 10; -fx-background-radius: 10;" vgap="10" />
                 <Label fx:id="totalLabel" style="-fx-font-size: 16px; -fx-text-fill: white;" text="Total: 0.0€" />
             <Button fx:id="botonEliminarProductoComanda" mnemonicParsing="false" onMouseClicked="#eliminarProductoComanda" style="-fx-background-color: red; -fx-text-fill: white;" text="Eliminar" />
+            <Button fx:id="btonCobrarComanda" mnemonicParsing="false" onMouseClicked="#cobrarComanda" style="-fx-background-color: blue; -fx-text-fill: white;" text="Cobrar Comanda" />
             </VBox>
 
             <VBox spacing="10">
@@ -49,5 +50,6 @@
             <Image url="@../imagenes/icons8-volver-48.png" />
          </image>
       </ImageView>
+      <Button mnemonicParsing="false" onMouseClicked="#mostrarAyudaComandas" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: linear-gradient(to bottom, #FF9800, #F57C00); -fx-background-radius: 18; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0.3, 0, 2); -fx-cursor: hand;" text="?" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="15.0" />
     </children>
 </AnchorPane>

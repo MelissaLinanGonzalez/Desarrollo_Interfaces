@@ -3,16 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/melissa/Escritorio/DIN/JavaFX/AppRestaurante/src/controlador/VistaInventarioController.java</file>
-            <file>file:/home/melissa/Escritorio/DIN/JavaFX/AppRestaurante/src/modelo/GestorComanda.java</file>
-            <file>file:/home/melissa/Escritorio/DIN/JavaFX/AppRestaurante/src/vista/vistaDeComandas.fxml</file>
-            <file>file:/home/melissa/Escritorio/DIN/JavaFX/AppRestaurante/src/data/inventario.txt</file>
-            <file>file:/home/melissa/Escritorio/DIN/JavaFX/AppRestaurante/src/modelo/Producto.java</file>
-            <file>file:/home/melissa/Escritorio/DIN/JavaFX/AppRestaurante/src/controlador/VistaDeComandasController.java</file>
-            <file>file:/home/melissa/Escritorio/DIN/JavaFX/AppRestaurante/src/data/comandas/b1.txt</file>
-            <file>file:/home/melissa/Escritorio/DIN/JavaFX/AppRestaurante/src/modelo/GestorProductos.java</file>
-            <file>file:/home/melissa/Escritorio/DIN/JavaFX/AppRestaurante/src/modelo/Comanda.java</file>
-            <file>file:/home/melissa/Escritorio/DIN/JavaFX/AppRestaurante/src/controlador/VistaDeMesasController.java</file>
+            <file>file:/home/melissa/Escritorio/DIN/Desarrollo_Interfaces/AppRestaurante/src/modelo/ProductoInventario.java</file>
+            <file>file:/home/melissa/Escritorio/DIN/Desarrollo_Interfaces/AppRestaurante/src/controlador/VistaDeComandasController.java</file>
+            <file>file:/home/melissa/Escritorio/DIN/Desarrollo_Interfaces/AppRestaurante/src/controlador/VistaDeMesasController.java</file>
+            <file>file:/home/melissa/Escritorio/DIN/Desarrollo_Interfaces/AppRestaurante/src/controlador/VistaInventarioController.java</file>
+            <file>file:/home/melissa/Escritorio/DIN/Desarrollo_Interfaces/AppRestaurante/src/controlador/VistaPrincipalController.java</file>
+            <file>file:/home/melissa/Escritorio/DIN/Desarrollo_Interfaces/AppRestaurante/src/modelo/Comanda.java</file>
+            <file>file:/home/melissa/Escritorio/DIN/Desarrollo_Interfaces/AppRestaurante/src/modelo/Familia.java</file>
+            <file>file:/home/melissa/Escritorio/DIN/Desarrollo_Interfaces/AppRestaurante/src/modelo/GestorComanda.java</file>
+            <file>file:/home/melissa/Escritorio/DIN/Desarrollo_Interfaces/AppRestaurante/src/modelo/GestorProductos.java</file>
+            <file>file:/home/melissa/Escritorio/DIN/Desarrollo_Interfaces/AppRestaurante/src/modelo/Inventario.java</file>
+            <file>file:/home/melissa/Escritorio/DIN/Desarrollo_Interfaces/AppRestaurante/src/data/inventario.txt</file>
+            <file>file:/home/melissa/Escritorio/DIN/Desarrollo_Interfaces/AppRestaurante/src/data/comandas/b1.txt</file>
+            <file>file:/home/melissa/Escritorio/DIN/Desarrollo_Interfaces/AppRestaurante/src/data/comandas/b2.txt</file>
+            <file>file:/home/melissa/Escritorio/DIN/Desarrollo_Interfaces/AppRestaurante/src/data/comandas/b4.txt</file>
+            <file>file:/home/melissa/Escritorio/DIN/Desarrollo_Interfaces/AppRestaurante/src/data/cobradas.txt</file>
+            <file>file:/home/melissa/Escritorio/DIN/Desarrollo_Interfaces/AppRestaurante/src/controlador/Main.java</file>
+            <file>file:/home/melissa/Escritorio/DIN/Desarrollo_Interfaces/AppRestaurante/src/vista/vistaDeMesas.fxml</file>
         </group>
     </open-files>
 </project-private>

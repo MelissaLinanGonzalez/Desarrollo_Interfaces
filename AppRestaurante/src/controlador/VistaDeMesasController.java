@@ -13,7 +13,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
@@ -94,7 +97,7 @@ public class VistaDeMesasController implements Initializable {
     private Label t8;
     @FXML
     private Label t9;
-    
+
     private String usuarioActual;
     @FXML
     private ImageView volver;
@@ -104,8 +107,23 @@ public class VistaDeMesasController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }    
+        // --- Evento F1 para ayuda contextual ---
+        botonBarra.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+                    if (event.getCode() == KeyCode.F1) {
+                        GestorAyuda.mostrarAyuda("Mesas");
+                    }
+                });
+            }
+        });
+
+        // --- Tooltips ---
+        Tooltip.install(botonBarra, new Tooltip("Ver las mesas de la barra"));
+        Tooltip.install(botonSalon, new Tooltip("Ver las mesas del salón"));
+        Tooltip.install(botonTerraza, new Tooltip("Ver las mesas de la terraza"));
+        Tooltip.install(volver, new Tooltip("Volver a la pantalla principal"));
+    }
 
     @FXML
     private void mostrarBarra(MouseEvent event) {
@@ -126,7 +144,7 @@ public class VistaDeMesasController implements Initializable {
     private void irComanda(MouseEvent event) throws IOException {
         // Identificar qué label se pulsó
         Label mesaLabel = (Label) event.getSource();
-        String mesaId = mesaLabel.getId(); 
+        String mesaId = mesaLabel.getId();
 
         // Cargar la vista de comandas
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistaDeComandas.fxml"));
@@ -143,8 +161,7 @@ public class VistaDeMesasController implements Initializable {
         stage.setTitle("Comanda");
     }
 
-    
-    public void setUsuario(String usuario){
+    public void setUsuario(String usuario) {
         this.usuarioActual = usuario;
         usuarioNombre.setText(usuario);
     }
@@ -163,16 +180,27 @@ public class VistaDeMesasController implements Initializable {
         stage.setScene(escena);
         stage.setTitle("FoodFlow");
     }
-    
+
     private void mostrarPantalla(FlowPane pantalla) {
-    // Ocultar todas
-        pantallaBarra.setVisible(false); pantallaBarra.setManaged(false);
-        pantallaSalon.setVisible(false); pantallaSalon.setManaged(false);
-        pantallaTerraza.setVisible(false); pantallaTerraza.setManaged(false);
+        // Ocultar todas
+        pantallaBarra.setVisible(false);
+        pantallaBarra.setManaged(false);
+        pantallaSalon.setVisible(false);
+        pantallaSalon.setManaged(false);
+        pantallaTerraza.setVisible(false);
+        pantallaTerraza.setManaged(false);
 
         // Mostrar solo la seleccionada
         pantalla.setVisible(true);
         pantalla.setManaged(true);
     }
-    
+
+    /**
+     * Método invocado al pulsar el botón de ayuda (?).
+     */
+    @FXML
+    private void mostrarAyudaMesas(MouseEvent event) {
+        GestorAyuda.mostrarAyuda("Mesas");
+    }
+
 }

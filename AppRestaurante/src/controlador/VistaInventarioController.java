@@ -30,7 +30,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import modelo.Familia;
@@ -46,18 +49,28 @@ public class VistaInventarioController implements Initializable {
 
     private final String RUTA_ARCHIVO = "src/data/inventario.txt";
 
-    @FXML private TableColumn<ProductoInventario, String> colFamilia;
-    @FXML private TableColumn<ProductoInventario, String> colNombre;
-    @FXML private TableColumn<ProductoInventario, Double> colPrecio;
-    @FXML private TableColumn<ProductoInventario, Integer> colUnidades;
+    @FXML
+    private TableColumn<ProductoInventario, String> colFamilia;
+    @FXML
+    private TableColumn<ProductoInventario, String> colNombre;
+    @FXML
+    private TableColumn<ProductoInventario, Double> colPrecio;
+    @FXML
+    private TableColumn<ProductoInventario, Integer> colUnidades;
 
-    @FXML private ImageView volver;
-    @FXML private TextField nombreProductote;
-    @FXML private ComboBox<String> comboFamilia;
-    @FXML private TextField precioProducto;
-    @FXML private TextField unidadesProducto;
+    @FXML
+    private ImageView volver;
+    @FXML
+    private TextField nombreProductote;
+    @FXML
+    private ComboBox<String> comboFamilia;
+    @FXML
+    private TextField precioProducto;
+    @FXML
+    private TextField unidadesProducto;
 
-    @FXML private TableView<ProductoInventario> productosTabla;
+    @FXML
+    private TableView<ProductoInventario> productosTabla;
 
     private Inventario inventario = new Inventario();
     private ObservableList<ProductoInventario> listaProductos = FXCollections.observableArrayList();
@@ -80,26 +93,37 @@ public class VistaInventarioController implements Initializable {
                 "Carnes",
                 "Pescados",
                 "Empanados",
-                "Postres"
-        ));
-        
-        colNombre.setCellValueFactory(e ->
-            new SimpleStringProperty(e.getValue().getNombre()));
+                "Postres"));
 
-        colPrecio.setCellValueFactory(e ->
-            new SimpleDoubleProperty(e.getValue().getPrecio()).asObject());
+        colNombre.setCellValueFactory(e -> new SimpleStringProperty(e.getValue().getNombre()));
 
-        colUnidades.setCellValueFactory(e ->
-            new SimpleIntegerProperty(e.getValue().getStock()).asObject());
+        colPrecio.setCellValueFactory(e -> new SimpleDoubleProperty(e.getValue().getPrecio()).asObject());
 
-        colFamilia.setCellValueFactory(e ->
-            new SimpleStringProperty(e.getValue().getFamilia().getNombre())
-        );
-        
+        colUnidades.setCellValueFactory(e -> new SimpleIntegerProperty(e.getValue().getStock()).asObject());
+
+        colFamilia.setCellValueFactory(e -> new SimpleStringProperty(e.getValue().getFamilia().getNombre()));
+
         listaProductos.addAll(cargarLista());
         productosTabla.setItems(listaProductos);
 
-    }    
+        // --- Evento F1 para ayuda contextual ---
+        botonAniadir.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+                    if (event.getCode() == KeyCode.F1) {
+                        GestorAyuda.mostrarAyuda("Inventario");
+                    }
+                });
+            }
+        });
+
+        // --- Tooltips ---
+        botonAniadir.setTooltip(new Tooltip("Añadir un nuevo producto al inventario"));
+        botonModificar.setTooltip(new Tooltip("Guardar los cambios del producto seleccionado"));
+        botonEliminar.setTooltip(new Tooltip("Eliminar el producto seleccionado del inventario"));
+        Tooltip.install(volver, new Tooltip("Volver a la pantalla principal"));
+        comboFamilia.setTooltip(new Tooltip("Seleccionar la familia del producto"));
+    }
 
     @FXML
     private void volverPrincipal(MouseEvent event) throws IOException {
@@ -137,8 +161,7 @@ public class VistaInventarioController implements Initializable {
             int unidades = Integer.parseInt(unidadesProducto.getText());
 
             ProductoInventario nuevo = new ProductoInventario(
-                nombre, precio, unidades, new Familia(familia)
-            );
+                    nombre, precio, unidades, new Familia(familia));
 
             listaProductos.add(nuevo);
             inventario.agregarProducto(nuevo);
@@ -188,37 +211,37 @@ public class VistaInventarioController implements Initializable {
 
         guardarLista(listaProductos);
     }
-    
+
     private void limpiarCampos() {
         nombreProductote.clear();
         precioProducto.clear();
         unidadesProducto.clear();
         comboFamilia.getSelectionModel().clearSelection();
     }
-    
+
     private void guardarLista(List<ProductoInventario> productos) {
         File archivo = new File(RUTA_ARCHIVO);
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
             for (ProductoInventario p : productos) {
                 bw.write(
-                    p.getNombre() + "|" +
-                    p.getFamilia().getNombre() + "|" +
-                    p.getPrecio() + "|" +
-                    p.getStock()
-                );
+                        p.getNombre() + "|" +
+                                p.getFamilia().getNombre() + "|" +
+                                p.getPrecio() + "|" +
+                                p.getStock());
                 bw.newLine();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     private List<ProductoInventario> cargarLista() {
         List<ProductoInventario> lista = new ArrayList<>();
         File archivo = new File(RUTA_ARCHIVO);
 
-        if (!archivo.exists()) return lista;
+        if (!archivo.exists())
+            return lista;
 
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
@@ -233,8 +256,7 @@ public class VistaInventarioController implements Initializable {
                     int stock = Integer.parseInt(datos[3]);
 
                     lista.add(new ProductoInventario(
-                            nombre, precio, stock, new Familia(familia)
-                    ));
+                            nombre, precio, stock, new Familia(familia)));
                 }
             }
 
@@ -244,7 +266,7 @@ public class VistaInventarioController implements Initializable {
 
         return lista;
     }
-    
+
     private void mostrarAlerta(String titulo, String mensaje) {
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setTitle(titulo);
@@ -253,6 +275,12 @@ public class VistaInventarioController implements Initializable {
         alerta.showAndWait();
     }
 
-   
-    
+    /**
+     * Método invocado al pulsar el botón de ayuda (?).
+     */
+    @FXML
+    private void mostrarAyudaInventario(MouseEvent event) {
+        GestorAyuda.mostrarAyuda("Inventario");
+    }
+
 }

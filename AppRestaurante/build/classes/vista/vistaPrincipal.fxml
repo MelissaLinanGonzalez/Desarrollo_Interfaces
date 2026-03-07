@@ -40,5 +40,6 @@
          </image>
       </ImageView>
       <Button fx:id="btoInventario" layoutX="449.0" layoutY="658.0" mnemonicParsing="false" onMouseClicked="#mostrarInventario" style="-fx-background-color: linear-gradient(to bottom, #4FC3F7, #0288D1); -fx-background-radius: 8; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14; -fx-padding: 8 16; -fx-effect: dropshadow(gaussian, rgba(0, 80, 150, 0.6), 10, 0.4, 0, 0); -fx-border-color: #01579B; -fx-border-radius: 8; -fx-border-width: 1.5;" text="Inventario" />
+      <Button mnemonicParsing="false" onMouseClicked="#mostrarAyudaPrincipal" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: linear-gradient(to bottom, #FF9800, #F57C00); -fx-background-radius: 18; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0.3, 0, 2); -fx-cursor: hand;" text="?" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="15.0" />
    </children>
 </AnchorPane>

@@ -1,1 +1,2 @@
-Fanta Naranja|2.5|10
+Solomillo|8.75|3
+Tarta Queso|3.5|1

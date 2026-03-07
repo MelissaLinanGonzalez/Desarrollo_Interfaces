@@ -15,7 +15,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
@@ -41,31 +44,48 @@ public class VistaPrincipalController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }    
+        // --- Evento F1 para ayuda contextual ---
+        // Se registra cuando el nodo ya tiene Scene asignada
+        btoInventario.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+                    if (event.getCode() == KeyCode.F1) {
+                        GestorAyuda.mostrarAyuda("Principal");
+                    }
+                });
+            }
+        });
+
+        // --- Tooltips ---
+        btoInventario.setTooltip(new Tooltip("Acceder al inventario de productos"));
+        Lisa.setPickOnBounds(true);
+        Tooltip.install(Lisa, new Tooltip("Iniciar sesión como Lisa"));
+        Tooltip.install(Amparo, new Tooltip("Iniciar sesión como Amparo"));
+        Tooltip.install(German, new Tooltip("Iniciar sesión como Germán"));
+    }
 
     @FXML
     private void cambiarAMesas(MouseEvent event) {
         try {
-        ImageView imagenClicada = (ImageView) event.getSource();
-        String nombreUsuario = imagenClicada.getId();
+            ImageView imagenClicada = (ImageView) event.getSource();
+            String nombreUsuario = imagenClicada.getId();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistaDeMesas.fxml"));
-        Parent root = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistaDeMesas.fxml"));
+            Parent root = loader.load();
 
-        // Obtener el controlador de la siguiente vista
-        VistaDeMesasController controlador = loader.getController();
-        controlador.setUsuario(nombreUsuario); // Pasamos el nombre
+            // Obtener el controlador de la siguiente vista
+            VistaDeMesasController controlador = loader.getController();
+            controlador.setUsuario(nombreUsuario); // Pasamos el nombre
 
-        // Cambiar la escena
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Mesas de " + nombreUsuario);
-        stage.show();
+            // Cambiar la escena
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Mesas de " + nombreUsuario);
+            stage.show();
 
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -83,6 +103,12 @@ public class VistaPrincipalController implements Initializable {
         stage.setTitle("Inventario");
     }
 
+    /**
+     * Método invocado al pulsar el botón de ayuda (?).
+     */
+    @FXML
+    private void mostrarAyudaPrincipal(MouseEvent event) {
+        GestorAyuda.mostrarAyuda("Principal");
+    }
 
-    
 }

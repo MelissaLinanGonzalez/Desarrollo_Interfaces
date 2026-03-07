@@ -16,7 +16,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
@@ -33,24 +36,47 @@ import modelo.ProductoInventario;
  */
 public class VistaDeComandasController implements Initializable {
 
-    @FXML private FlowPane productosDisponiblesPane;
-    @FXML private FlowPane resumenComandaPane;
-    @FXML private Label totalLabel;
-    @FXML private ImageView volver;
+    @FXML
+    private FlowPane productosDisponiblesPane;
+    @FXML
+    private FlowPane resumenComandaPane;
+    @FXML
+    private Label totalLabel;
+    @FXML
+    private ImageView volver;
     private Label productoSeleccionadoLabel = null;
     private Producto productoSeleccionado = null;
-
 
     private String mesaId;
     @FXML
     private ImageView volver1;
     @FXML
     private Button botonEliminarProductoComanda;
+    @FXML
+    private Button btonCobrarComanda;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         mostrarProductosDisponibles("");
+
+        // --- Evento F1 para ayuda contextual ---
+        botonEliminarProductoComanda.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+                    if (event.getCode() == KeyCode.F1) {
+                        GestorAyuda.mostrarAyuda("Comandas");
+                    }
+                });
+            }
+        });
+
+        // --- Tooltips ---
+        botonEliminarProductoComanda.setTooltip(
+                new Tooltip("Eliminar el producto seleccionado de la comanda"));
+        btonCobrarComanda.setTooltip(
+                new Tooltip("Cobrar y cerrar la comanda de esta mesa"));
+        Tooltip.install(volver, new Tooltip("Volver a la vista de mesas"));
     }
 
     public void setMesaId(String mesaId) {
@@ -76,27 +102,27 @@ public class VistaDeComandasController implements Initializable {
             lbl.setPadding(new Insets(10));
             lbl.setStyle("-fx-background-color: #eee; -fx-border-radius: 5; -fx-background-radius: 5;");
             lbl.setOnMouseClicked(e -> {
-            String nombreProducto = p.getNombre();
+                String nombreProducto = p.getNombre();
 
-            int stockActual = obtenerStockProducto(nombreProducto);
+                int stockActual = obtenerStockProducto(nombreProducto);
 
-            if (stockActual <= 0) {
-                mostrarAlerta("Sin stock", "No queda stock de " + nombreProducto);
-                return;
-            }
-            boolean reducido = reducirStock(nombreProducto, 1);
+                if (stockActual <= 0) {
+                    mostrarAlerta("Sin stock", "No queda stock de " + nombreProducto);
+                    return;
+                }
+                boolean reducido = reducirStock(nombreProducto, 1);
 
-            if (!reducido) {
-                mostrarAlerta("Sin stock", "No queda stock suficiente de " + nombreProducto);
-                return;
-            }
+                if (!reducido) {
+                    mostrarAlerta("Sin stock", "No queda stock suficiente de " + nombreProducto);
+                    return;
+                }
 
-            Comanda c = GestorComanda.getInstance().getComanda(mesaId);
-            c.agregarProducto(new Producto(p.getNombre(), p.getPrecio(), 1));
+                Comanda c = GestorComanda.getInstance().getComanda(mesaId);
+                c.agregarProducto(new Producto(p.getNombre(), p.getPrecio(), 1));
 
-            refrescarResumenComanda();
-            
-        });
+                refrescarResumenComanda();
+
+            });
             productosDisponiblesPane.getChildren().add(lbl);
         }
     }
@@ -105,13 +131,14 @@ public class VistaDeComandasController implements Initializable {
         List<Producto> lista = new ArrayList<>();
         File archivo = new File("src/data/inventario.txt");
 
-        if (!archivo.exists()) return lista;
+        if (!archivo.exists())
+            return lista;
 
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split("\\|");
-                
+
                 if (datos.length == 4) {
                     String nombre = datos[0];
                     String fam = datos[1];
@@ -121,7 +148,7 @@ public class VistaDeComandasController implements Initializable {
                     }
                 }
             }
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -131,27 +158,28 @@ public class VistaDeComandasController implements Initializable {
 
     private void refrescarResumenComanda() {
         resumenComandaPane.getChildren().clear();
-    Comanda c = GestorComanda.getInstance().getComanda(mesaId);
-    double total = 0;
+        Comanda c = GestorComanda.getInstance().getComanda(mesaId);
+        double total = 0;
 
-    for (Producto p : c.getProductos()) {
-        double subtotal = p.getPrecio() * p.getCantidad();
-        total += subtotal;
-        Label lbl = new Label(p.getNombre() + " x" + p.getCantidad() + " = " + subtotal + "€");
-        lbl.setPadding(new Insets(5));
-        lbl.setStyle("-fx-background-color: #dff0d8; -fx-border-radius: 5; -fx-background-radius: 5;");
-        
-        lbl.setOnMouseClicked(ev -> {
-            // Quitar selección previa
-            if (productoSeleccionadoLabel != null) {
-                productoSeleccionadoLabel.setStyle("-fx-background-color: #dff0d8; -fx-border-radius: 5; -fx-background-radius: 5;");
-            }
+        for (Producto p : c.getProductos()) {
+            double subtotal = p.getPrecio() * p.getCantidad();
+            total += subtotal;
+            Label lbl = new Label(p.getNombre() + " x" + p.getCantidad() + " = " + subtotal + "€");
+            lbl.setPadding(new Insets(5));
+            lbl.setStyle("-fx-background-color: #dff0d8; -fx-border-radius: 5; -fx-background-radius: 5;");
 
-            // Seleccionar actual
-            productoSeleccionadoLabel = lbl;
-            productoSeleccionado = p;
+            lbl.setOnMouseClicked(ev -> {
+                // Quitar selección previa
+                if (productoSeleccionadoLabel != null) {
+                    productoSeleccionadoLabel
+                            .setStyle("-fx-background-color: #dff0d8; -fx-border-radius: 5; -fx-background-radius: 5;");
+                }
 
-            lbl.setStyle("-fx-background-color: #ffcccc; -fx-border-radius: 5; -fx-background-radius: 5;");
+                // Seleccionar actual
+                productoSeleccionadoLabel = lbl;
+                productoSeleccionado = p;
+
+                lbl.setStyle("-fx-background-color: #ffcccc; -fx-border-radius: 5; -fx-background-radius: 5;");
             });
             resumenComandaPane.getChildren().add(lbl);
         }
@@ -172,7 +200,7 @@ public class VistaDeComandasController implements Initializable {
         stage.setScene(new Scene(root));
         stage.setTitle("FoodFlow");
     }
-    
+
     private int obtenerStockProducto(String nombre) {
         File archivo = new File("src/data/inventario.txt");
 
@@ -182,79 +210,85 @@ public class VistaDeComandasController implements Initializable {
                 String[] datos = linea.split("\\|");
 
                 if (datos[0].equalsIgnoreCase(nombre)) {
-                    return Integer.parseInt(datos[3]); 
+                    return Integer.parseInt(datos[3]);
                 }
             }
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        return -1; 
+        return -1;
     }
-    
+
     private boolean reducirStock(String nombreProducto, int cantidadReducir) {
 
-    File archivo = new File("src/data/inventario.txt");
-    List<String> lineas = new ArrayList<>();
+        File archivo = new File("src/data/inventario.txt");
+        List<String> lineas = new ArrayList<>();
 
-    try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
-        String linea;
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
 
-        while ((linea = br.readLine()) != null) {
-            String[] datos = linea.split("\\|");
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split("\\|");
 
-            if (datos[0].equalsIgnoreCase(nombreProducto)) {
+                if (datos[0].equalsIgnoreCase(nombreProducto)) {
 
-                int stockActual = Integer.parseInt(datos[3]);
+                    int stockActual = Integer.parseInt(datos[3]);
 
-                if (stockActual < cantidadReducir) {
-                    return false;
+                    if (stockActual < cantidadReducir) {
+                        return false;
+                    }
+
+                    int nuevoStock = stockActual - cantidadReducir;
+
+                    linea = datos[0] + "|" + datos[1] + "|" + datos[2] + "|" + nuevoStock;
                 }
 
-                int nuevoStock = stockActual - cantidadReducir;
-
-                linea = datos[0] + "|" + datos[1] + "|" + datos[2] + "|" + nuevoStock;
+                lineas.add(linea);
             }
 
-            lineas.add(linea);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-    } catch (Exception e) { e.printStackTrace(); }
-
-    try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
-        for (String l : lineas) {
-            bw.write(l);
-            bw.newLine();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
+            for (String l : lineas) {
+                bw.write(l);
+                bw.newLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    } catch (Exception e) { e.printStackTrace(); }
 
-    return true;
+        return true;
     }
-    
+
     private void mostrarAlerta(String titulo, String mensaje) {
-    Alert alert = new Alert(Alert.AlertType.WARNING);
-    alert.setHeaderText(titulo);
-    alert.setContentText(mensaje);
-    alert.showAndWait();
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText(titulo);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 
     @FXML
     private void eliminarProductoComanda(MouseEvent event) {
-        if(productoSeleccionado == null){
-            mostrarAlerta("Seleccion requerida","Tienes que seleccionar un producto");
+        if (productoSeleccionado == null) {
+            mostrarAlerta("Seleccion requerida", "Tienes que seleccionar un producto");
             return;
         }
-        
+
         Comanda c = GestorComanda.getInstance().getComanda(mesaId);
         c.eliminarProducto(productoSeleccionado.getNombre());
         aumentarStock(productoSeleccionado.getNombre(), productoSeleccionado.getCantidad());
-        
+
         eliminarLineaDeArchivo(mesaId, productoSeleccionado.getNombre());
-        
+
         productoSeleccionado = null;
         productoSeleccionadoLabel = null;
-        
+
         refrescarResumenComanda();
     }
-    
+
     private void eliminarLineaDeArchivo(String mesaId, String nombreProducto) {
         File archivo = new File("src/data/" + mesaId + ".txt");
         List<String> lineas = new ArrayList<>();
@@ -266,16 +300,20 @@ public class VistaDeComandasController implements Initializable {
                     lineas.add(linea);
                 }
             }
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
             for (String l : lineas) {
                 bw.write(l);
                 bw.newLine();
             }
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    
+
     private void aumentarStock(String nombreProducto, int cantidadAgregar) {
         File archivo = new File("src/data/inventario.txt");
         List<String> lineas = new ArrayList<>();
@@ -304,5 +342,52 @@ public class VistaDeComandasController implements Initializable {
             e.printStackTrace();
         }
     }
-    
+
+    @FXML
+    private void cobrarComanda(MouseEvent event) {
+        try {
+            File archivoMesa = new File("src/data/comandas/" + mesaId + ".txt");
+            if (!archivoMesa.exists()) {
+                mostrarAlerta("Error", "No hay comanda que cobrar para esta mesa.");
+                return;
+            }
+
+            // Cargar la comanda y calcular el total
+            Comanda comanda = GestorComanda.getInstance().getComanda(mesaId);
+            double total = comanda.getTotalComanda();
+
+            // Guardar en cobradas.txt
+            File cobradasFile = new File("src/data/cobradas.txt");
+            cobradasFile.getParentFile().mkdirs();
+
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(cobradasFile, true))) {
+                bw.write(mesaId + "|" + total);
+                bw.newLine();
+            }
+
+            // Vaciar la comanda de la mesa
+            if (archivoMesa.exists()) {
+                new BufferedWriter(new FileWriter(archivoMesa, false)).close(); // sobrescribe con vacío
+            }
+
+            // Limpiar la comanda en memoria
+            comanda.getProductos().clear();
+            refrescarResumenComanda();
+
+            mostrarAlerta("Cobrado", "La comanda de la mesa " + mesaId + " ha sido cobrada correctamente.");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Error", "Ha ocurrido un error al cobrar la comanda.");
+        }
+    }
+
+    /**
+     * Método invocado al pulsar el botón de ayuda (?).
+     */
+    @FXML
+    private void mostrarAyudaComandas(MouseEvent event) {
+        GestorAyuda.mostrarAyuda("Comandas");
+    }
+
 }

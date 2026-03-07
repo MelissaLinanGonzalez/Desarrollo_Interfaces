@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="077d5d63-08ff-427e-bdd4-f189566fb25d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/build/built-jar.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/built-jar.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.netbeans_automatic_build" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.netbeans_update_resources" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/data/comandas/b1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/data/comandas/b1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/data/comandas/b2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/data/comandas/b2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/data/comandas/b4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/data/comandas/b4.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/data/inventario.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/data/inventario.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/vista/vistaDeComandas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/vista/vistaDeComandas.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controlador/VistaDeComandasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/VistaDeComandasController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/comandas/b1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/comandas/b2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/comandas/b4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/inventario.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/inventario.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/GestorProductos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/GestorProductos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vista/vistaDeComandas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/vistaDeComandas.fxml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="369bWywDR7s8t3IAXR38TC6Tios" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="077d5d63-08ff-427e-bdd4-f189566fb25d" name="Changes" comment="" />
+      <created>1764421770892</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1764421770892</updated>
+    </task>
+    <servers />
+  </component>
+</project>

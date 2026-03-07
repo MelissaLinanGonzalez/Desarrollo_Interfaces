@@ -34,6 +34,7 @@ public class GestorProductos {
     }
 
     // Clase interna para relacionar producto con familia
+    // Recomendado por ChatGPT para no tener que modificar todo el codigo anteriormente planteado
     public static class ProductoConFamilia extends Producto {
         private String familia;
 

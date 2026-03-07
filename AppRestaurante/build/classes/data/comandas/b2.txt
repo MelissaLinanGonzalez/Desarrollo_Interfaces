@@ -1,1 +1,4 @@
-SanJacabo Cheddar|9.5|10
+Tapa Bravas|3.5|3
+Fanta Naranja|2.5|2
+Chipirones Plancha|7.5|2
+Entrecot|20.0|7
